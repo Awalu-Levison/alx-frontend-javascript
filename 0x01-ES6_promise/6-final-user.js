@@ -6,10 +6,10 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
     signUpUser(firstName, lastName),
     uploadPhoto(fileName),
   ]).then((values) => {
-    const arr = [];
+    const myarr = [];
     for (const item of values) {
-      arr.push({ status: item.status, value: item.value || item.reason });
+      myarr.push({ status: item.status, value: item.value || item.reason });
     }
-    return arr;
+    return myarr;
   });
 }
