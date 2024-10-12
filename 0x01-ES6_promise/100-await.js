@@ -6,10 +6,10 @@ export default async function asyncUploadUser() {
   try {
     photo = await uploadPhoto();
     user = await createUser();
+  /* Catching errors */
   } catch (error) {
     photo = null;
     user = null;
   }
-  /* Catching errors */
   return { photo, user };
 }
