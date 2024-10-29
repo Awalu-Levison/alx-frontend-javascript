@@ -1,85 +1,19 @@
-interface DirectorInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workDirectorTasks(): string;
-}
+/// <reference path="./crud.d.ts" />
 
-interface TeacherInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workTeacherTasks(): string;
-}
+import { rowID, rowElement } from "./interface";
+import * as CRUD from "./crud";
 
-class Director implements DirectorInterface {
-  workFromHome(): string {
-    return "Working from home"
-    }
+const row: RowElement = {
+  firstName: "Guillaume";
+  lastName: "Salva";
+};
 
-  getToWork(): string {
-    return "Getting a coffee break"
-    }
-
-   workDirectorTasks(): string {
-      return "Getting to director tasks"
-     }
-  }
+const newRowID: RowID = CRUD.insertRow(row);
+const updatedRow: RowElement = { age: 23, ...row };
 
 
-class Teacher implements TeacherInterface {
-   workFromHome(): string {
-     return "Cannot work from home"
-   }
-
-  getCoffeeBreak(): string {
-    return "Cannot have a break"
-  }
-
-  workTeacherTasks(): string {
-     return "Getting to work"
-  }
-}
-
-function createEmployee(salary: number | string): Director | Teacher {
-  if (typeof salary === "number" && salary < 500) {
-    return new teacher();
-    } else {
-      return new Director();
-      }
-}
-
-console.log(createEmployee(200));
-console.log(createEmployee(1000));
-console.log(createEmployee('$500'));
+CRUD.updateRow(newRowID, updatedRow);
+CRUD.deleteRow(newRowID);
 
 
-// Creating functions specific to employees
 
-function isDirector(employee: Teacher | Director): boolean {
-  return employee instance of Director;
-}
-
-function executeWork(employee: Director | Teacher): string {
-  if (employee instanceof Director) {
-    return employee.workDirectorTasks();
-  } else {
-    return employee.workTeacherTasks();
-  }
-}
-
-console.log(executeWork(createEmployee(200)));
-console.log(executeWork(createEmployee(1000)));
-
-// String literal types
-
-type Subjects = "Math" | "History";
-
-function teachClass(todayClass: Subjects): string {
-  if (todayClass === "Math") {
-    return "Teaching Math";
-  } else if (todayClass === "History") {
-    return "Teaching History";
-  }
-}
-
-console.log(teachClass('Math'));
-console.log(teachClass('History'));
