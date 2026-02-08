@@ -221,10 +221,27 @@ Hint: The key here to define default parameter values for the function parameter
         console.log(getSumOfHoods(34, 3, 4));
 
 - bob@dylan:~$ npm run dev 3-main.js 
+
     142
 
     56
     
     41
 
-    
+### Task 5: (4. Rest parameter syntax for functions)
+
+#### Instruction
+
+Modify the following function to return the number of arguments passed to it using the rest parameter syntax
+
+
+        export default function returnHowManyArguments() {
+
+        }
+
+#### Example out put
+
+-> returnHowManyArguments("Hello", "ALX", 2020);
+
+3
+
