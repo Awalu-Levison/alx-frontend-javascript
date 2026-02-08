@@ -94,3 +94,10 @@ sudo apt install nodejs -y
 - Install Jest, Babel, and ESLint
 
 in your project directory, install Jest, Babel and ESList by using the supplied package.json and run npm install.
+
+### Configuration files
+- package.json
+- babel.config.js
+- .eslintrc.js
+
+-- Don’t forget to run npm install from the terminal of your project folder to install all necessary project dependencies.
