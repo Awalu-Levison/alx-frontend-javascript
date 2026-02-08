@@ -245,3 +245,44 @@ Modify the following function to return the number of arguments passed to it usi
 
 3
 
+#### Execution
+- bob@dylan:~$ cat 4-main.js
+
+        import returnHowManyArguments from './4-rest-parameter.js';
+
+        console.log(returnHowManyArguments("one"));
+        console.log(returnHowManyArguments("one", "two", 3, "4th"));
+
+- bob@dylan:~$ npm run dev 4-main.js 
+
+1
+
+4
+
+### Task 6: (5. The wonders of spread syntax)
+
+#### Instructions
+
+Using spread syntax, concatenate 2 arrays and each character of a string by modifying the function below. Your function body should be one line long.
+
+#### given code
+
+        export default function concatArrays(array1, array2, string) {
+        }
+
+#### Execution:
+
+- bob@dylan:~$ cat 5-main.js
+
+        import concatArrays from './5-spread-operator.js';
+
+        console.log(concatArrays(['a', 'b'], ['c', 'd'], 'Hello'));
+
+- bob@dylan:~$ npm run dev 5-main.js 
+
+        [
+        'a', 'b', 'c',
+        'd', 'H', 'e',
+        'l', 'l', 'o'
+        ]
+
