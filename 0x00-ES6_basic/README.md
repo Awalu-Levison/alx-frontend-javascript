@@ -286,3 +286,181 @@ Using spread syntax, concatenate 2 arrays and each character of a string by modi
         'l', 'l', 'o'
         ]
 
+
+### Task 7: (6. Take advantage of template literals)
+
+#### Instructions
+
+Rewrite the return statement to use a template literal so you can the substitute the variables you’ve defined.
+
+        export default function getSanFranciscoDescription() {
+        const year = 2017;
+        const budget = {
+            income: '$119,868',
+            gdp: '$154.2 billion',
+            capita: '$178,479',
+        };
+
+        return 'As of ' + year + ', it was the seventh-highest income county in the United States'
+                / ', with a per capita personal income of ' + budget.income + '. As of 2015, San Francisco'
+                / ' proper had a GDP of ' + budget.gdp + ', and a GDP per capita of ' + budget.capita + '.';
+        }
+
+#### Execution:
+
+- bob@dylan:~$ cat 6-main.js
+
+        import getSanFranciscoDescription from './6-string-interpolation.js';
+
+        console.log(getSanFranciscoDescription());
+
+- File: 6-string-interpolation.js
+
+- bob@dylan:~$ npm run dev 6-main.js 
+
+As of 2017, it was the seventh-highest income county in the United States, with a per capita personal income of $119,868. As of 2015, San Francisco proper had a GDP of $154.2 billion, and a GDP per capita of $178,479.
+
+
+
+### Task 8: (7. Object property value shorthand syntax)
+
+#### Instructions
+
+Notice how the keys and the variable names are the same?
+
+Modify the following function’s budget object to simply use the keyname instead.
+
+#### Given code
+
+        export default function getBudgetObject(income, gdp, capita) {
+        const budget = {
+            income: income,
+            gdp: gdp,
+            capita: capita,
+        };
+
+        return budget;
+        }
+
+#### Execution:
+- bob@dylan:~$ cat 7-main.js
+
+        import getBudgetObject from './7-getBudgetObject.js';
+
+        console.log(getBudgetObject(400, 700, 900));
+
+- bob@dylan:~$ npm run dev 7-main.js 
+
+{ income: 400, gdp: 700, capita: 900 }
+
+- filename: 7-getBudgetObject.js
+
+
+### Task 9: (8. No need to create empty objects before adding in properties)
+
+#### Instruction
+
+        Rewrite the getBudgetForCurrentYear function to use ES6 computed property names on the budget object
+
+        function getCurrentYear() {
+        const date = new Date();
+        return date.getFullYear();
+        }
+
+        export default function getBudgetForCurrentYear(income, gdp, capita) {
+        const budget = {};
+
+        budget[`income-${getCurrentYear()}`] = income;
+        budget[`gdp-${getCurrentYear()}`] = gdp;
+        budget[`capita-${getCurrentYear()}`] = capita;
+
+        return budget;
+        }
+
+#### Execution:
+
+- bob@dylan:~$ cat 8-main.js
+
+        import getBudgetForCurrentYear from './8-getBudgetCurrentYear.js';
+
+        console.log(getBudgetForCurrentYear(2100, 5200, 1090));
+
+- bob@dylan:~$ npm run dev 8-main.js 
+
+{ 'income-2021': 2100, 'gdp-2021': 5200, 'capita-2021': 1090 }
+
+- File: 8-getBudgetCurrentYear.js
+
+
+### Task 10: (9. ES6 method properties)
+
+#### Instructions
+
+Rewrite getFullBudgetObject to use ES6 method properties in the fullBudget object
+
+import getBudgetObject from './7-getBudgetObject.js';
+
+        export default function getFullBudgetObject(income, gdp, capita) {
+        const budget = getBudgetObject(income, gdp, capita);
+        const fullBudget = {
+            ...budget,
+            getIncomeInDollars: function (income) {
+            return `$${income}`;
+            },
+            getIncomeInEuros: function (income) {
+            return `${income} euros`;
+            },
+        };
+
+        return fullBudget;
+        }
+
+#### Execution:
+
+- bob@dylan:~$ cat 9-main.js
+
+        import getFullBudgetObject from './9-getFullBudget.js';
+
+        const fullBudget = getFullBudgetObject(20, 50, 10);
+
+        console.log(fullBudget.getIncomeInDollars(fullBudget.income));
+        console.log(fullBudget.getIncomeInEuros(fullBudget.income));
+
+- ob@dylan:~$ npm run dev 9-main.js 
+
+20
+
+20 euros
+
+- File: 9-getFullBudget.js
+
+### Task 11: (10. For...of Loops)
+
+#### Instructions
+
+Rewrite the function appendToEachArrayValue to use ES6’s for...of operator. And don’t forget that var is not ES6-friendly.
+
+#### Given code
+
+        export default function appendToEachArrayValue(array, appendString) {
+        for (var idx in array) {
+            var value = array[idx];
+            array[idx] = appendString + value;
+        }
+
+        return array;
+        }
+
+#### Execution:
+
+- bob@dylan:~$ cat 10-main.js
+
+        import appendToEachArrayValue from './10-loops.js';
+
+        console.log(appendToEachArrayValue(['appended', 'fixed', 'displayed'], 'correctly-'));
+
+- bob@dylan:~$ npm run dev 10-main.js 
+
+[ 'correctly-appended', 'correctly-fixed', 'correctly-displayed' ]
+
+- File: 10-loops.js
