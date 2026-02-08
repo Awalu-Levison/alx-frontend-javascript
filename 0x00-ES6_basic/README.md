@@ -464,3 +464,215 @@ Rewrite the function appendToEachArrayValue to use ES6’s for...of operator. An
 [ 'correctly-appended', 'correctly-fixed', 'correctly-displayed' ]
 
 - File: 10-loops.js
+
+
+### Task 12: (11. Iterator)
+
+#### Instructions
+
+Write a function named createEmployeesObject that will receive two arguments:
+
+- departmentName (String)
+- employees (Array of Strings)
+
+        export default function createEmployeesObject(departmentName, employees) {
+
+        }
+
+#### Instruction 2
+
+        {
+            $departmentName: [
+                $employees,
+            ],
+        }
+
+#### Execution:
+
+- bob@dylan:~$ cat 11-main.js
+
+        import createEmployeesObject from './11-createEmployeesObject.js';
+
+        console.log(createEmployeesObject("Software", [ "Bob", "Sylvie" ]));
+
+- bob@dylan:~$ npm run dev 11-main.js
+
+{ Software: [ 'Bob', 'Sylvie' ] }
+
+- File: 11-createEmployeesObject.js
+
+
+### Task 13: (12. Let's create a report object)
+
+#### Instructions
+
+Write a function named <createReportObject> whose parameter, employeesList, is the return value of the previous function createEmployeesObject.
+
+        export default function createReportObject(employeesList) {
+
+        }
+
+#### Instruction part 2
+
+createReportObject should return an object containing the key allEmployees and a method property called getNumberOfDepartments.
+
+allEmployees is a key that maps to an object containing the department name and a list of all the employees in that department. If you’re having trouble, use the spread syntax.
+
+The method property receives employeesList and returns the number of departments. I would suggest suggest thinking back to the ES6 method property syntax.
+
+
+#### Given code
+
+        {
+        allEmployees: {
+            engineering: [
+                'John Doe',
+                'Guillaume Salva',
+            ],
+        },
+        };
+
+#### Execution:
+
+- bob@dylan:~$ cat 12-main.js
+
+        import createEmployeesObject from './11-createEmployeesObject.js';
+        import createReportObject from './12-createReportObject.js';
+
+        const employees = {
+            ...createEmployeesObject('engineering', ['Bob', 'Jane']),
+            ...createEmployeesObject('marketing', ['Sylvie'])
+        };      
+
+        const report = createReportObject(employees);
+        console.log(report.allEmployees);
+        console.log(report.getNumberOfDepartments(report.allEmployees));
+
+- bob@dylan:~$ npm run dev 12-main.js 
+
+{ engineering: [ 'Bob', 'Jane' ], marketing: [ 'Sylvie' ] }
+
+2
+
+- File: 12-createReportObject.js
+
+
+### Task 14: (13. Iterating through report objects)
+
+#### Instructions
+
+Write a function named createIteratorObject, that will take into argument a report Object created with the previous function createReportObject.
+
+This function will return an iterator to go through every employee in every department.
+
+#### Given code
+
+        export default function createIteratorObject(report) {
+
+        }
+
+### Execution:
+
+- bob@dylan:~$ cat 100-main.js
+
+        import createIteratorObject from "./100-createIteratorObject.js";
+
+        import createEmployeesObject from './11-createEmployeesObject.js';
+        import createReportObject from './12-createReportObject.js';
+
+        const employees = {
+            ...createEmployeesObject('engineering', ['Bob', 'Jane']),
+            ...createEmployeesObject('marketing', ['Sylvie'])
+        };
+
+        const report = createReportObject(employees);
+
+        const reportWithIterator = createIteratorObject(report);
+
+        for (const item of reportWithIterator) {
+            console.log(item);
+        }
+
+- bob@dylan:~$ npm run dev 100-main.js 
+
+Bob
+
+Jane
+
+Sylvie
+
+
+- 100-createIteratorObject.js
+
+### Task 15: (14. Iterate through object)
+
+#### Instructions
+
+Finally, write a function named iterateThroughObject. The function’s parameter reportWithIterator is the return value from createIteratorObject.
+
+#### Given Code
+
+        export default function iterateThroughObject(reportWithIterator) {
+
+        }
+
+It should return every employee name in a string, separated by |
+
+#### Given Code 2
+
+        {
+        allEmployees: {
+            engineering: [
+                'John Doe',
+                'Guillaume Salva',
+            ],
+        },
+        ...
+        };
+
+
+Should return John Doe | Guillaume Salva
+
+Reminder - the functions will be imported by the test suite.
+
+#### Full example:
+
+> employees = {
+      ...createEmployeesObject('engineering', engineering),
+      ...createEmployeesObject('design', design),
+    };
+>
+> const report = createReportObject(employees);
+> const reportWithIterator = createIteratorObject(report);
+> iterateThroughObject(reportWithIterator)
+'John Doe | Guillaume Salva | Kanye East | Jay Li'
+> 
+
+
+#### Execution:
+
+- bob@dylan:~$ cat 101-main.js
+
+        import createEmployeesObject from "./11-createEmployeesObject.js";
+        import createReportObject from './12-createReportObject.js';
+        import createIteratorObject from './100-createIteratorObject.js';
+        import iterateThroughObject from './101-iterateThroughObject.js';
+
+
+        const employees = {
+            ...createEmployeesObject('engineering', ['Bob', 'Jane']),
+            ...createEmployeesObject('marketing', ['Sylvie'])
+        };
+
+        const report = createReportObject(employees);
+        const reportWithIterator = createIteratorObject(report);
+
+        console.log(iterateThroughObject(reportWithIterator));
+
+
+- bob@dylan:~$ npm run dev 101-main.js 
+
+Bob | Jane | Sylvie
+
+- File: 101-iterateThroughObject.js
+
