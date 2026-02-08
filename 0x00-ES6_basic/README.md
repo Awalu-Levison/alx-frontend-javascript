@@ -128,3 +128,40 @@ Modify the following
 
     return combination;
     }
+
+### Execution example:
+- ob@dylan:~$ cat 0-main.js
+
+        import { taskFirst, taskNext } from './0-constants.js';
+
+        console.log(`${taskFirst()} ${taskNext()}`);
+
+- bob@dylan:~$ npm run dev 0-main.js
+
+output: I prefer const when I can. But sometimes let is okay
+
+- target filename ( 0-constants.js)
+
+
+### 1. Block Scope (1. Block Scope)
+- instructions:-
+
+Given what you’ve read about var and hoisting, modify the variables inside the function taskBlock so that the variables aren’t overwritten inside the conditional block.
+
+- File: 1-block-scoped.js
+
+### Execution
+- bob@dylan:~$ cat 1-main.js
+
+        import taskBlock from './1-block-scoped.js';
+
+        console.log(taskBlock(true));
+        console.log(taskBlock(false));
+
+- bob@dylan:~$ npm run dev 1-main.js 
+
+[ false, true ]
+[ false, true ]
+
+
+### Task 3: (2. Arrow functions)
