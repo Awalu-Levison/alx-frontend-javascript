@@ -100,4 +100,31 @@ in your project directory, install Jest, Babel and ESList by using the supplied 
 - babel.config.js
 - .eslintrc.js
 
--- Don’t forget to run npm install from the terminal of your project folder to install all necessary project dependencies.
+
+Don’t forget to run npm install from the terminal of your project folder to install all necessary project dependencies.
+
+
+### Task 0 (0. Const or let?)
+Modify the following
+
+- function taskFirst to instantiate variables using const
+
+- function taskNext to instantiate variables using let
+
+#### given Code
+
+    export function taskFirst() {
+    var task = 'I prefer const when I can.';
+    return task;
+    }
+
+    export function getLast() {
+    return ' is okay';
+    }
+
+    export function taskNext() {
+    var combination = 'But sometimes let';
+    combination += getLast();
+
+    return combination;
+    }
